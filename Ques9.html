@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        
+        #status {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="loginBtn">Login</button>
+    <button id="logoutBtn">Logout</button>
+    <div id="status"></div>
+
+    <script>
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const statusDiv = document.getElementById('status');
+        const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+        updateStatus();
+
+        loginBtn.addEventListener('click', () => {
+            localStorage.setItem('loggedIn', 'true');
+            updateStatus();
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('loggedIn');
+            updateStatus();
+        });
+
+        function updateStatus() {
+            const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+            if (isLoggedIn) {
+                statusDiv.textContent = 'User  Has Not Logged In';
+            } else {
+                statusDiv.textContent = 'User is not logged in';
+            }
+        }
+    </script>
+</body>
+
+</html>
